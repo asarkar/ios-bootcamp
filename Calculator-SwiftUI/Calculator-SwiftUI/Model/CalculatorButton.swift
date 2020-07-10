@@ -13,13 +13,12 @@ protocol CalculatorButtonProtocol {
     var type: CalculatorButtonType { get }
 }
 
-class CalculatorButton: CalculatorButtonProtocol, CustomStringConvertible {
-    var type: CalculatorButtonType
-    var description: String {
-        return label
-    }
-    
+class CalculatorButton: CalculatorButtonProtocol, CustomStringConvertible, CustomDebugStringConvertible {
+    let type: CalculatorButtonType
     let label: String
+    var description: String { label }
+    var debugDescription: String { description }
+    
     init(_ label: String, type: CalculatorButtonType) {
         self.label = label
         self.type = type
