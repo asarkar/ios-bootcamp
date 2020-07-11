@@ -92,4 +92,42 @@ class CalculatorTests: XCTestCase {
         calc.button = K.Equals
         XCTAssertEqual(calc.result, "3.2")
     }
+    
+    func testSubtractDecimals() {
+        calc.button = K.Number.Seven
+        XCTAssertEqual(calc.result, "7")
+        calc.button = K.Number.Eight
+        XCTAssertEqual(calc.result, "78")
+        calc.button = K.Number.Decimal
+        XCTAssertEqual(calc.result, "78.")
+        calc.button = K.Number.Nine
+        XCTAssertEqual(calc.result, "78.9")
+        calc.button = K.Operator.Minus
+        XCTAssertEqual(calc.result, "78.9")
+        calc.button = K.Number.Six
+        XCTAssertEqual(calc.result, "6")
+        calc.button = K.Number.Five
+        XCTAssertEqual(calc.result, "65")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "13.9")
+    }
+    
+    func testLimit() {
+        for i in 1...10 {
+            calc.button = K.Number.Seven
+            XCTAssertEqual(calc.result, String(repeating: "7", count: i))
+        }
+    }
+    
+    func testRounding() {
+        for _ in 1...10 {
+            calc.button = K.Number.Eight
+        }
+        calc.button = K.Operator.Plus
+        calc.button = K.Number.Six
+        calc.button = K.Number.Five
+        calc.button = K.Equals
+        
+        XCTAssertEqual(calc.result, "8888888953")
+    }
 }

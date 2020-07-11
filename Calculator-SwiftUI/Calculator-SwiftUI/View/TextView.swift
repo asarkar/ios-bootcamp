@@ -12,5 +12,6 @@ struct TextView: View {
             .foregroundColor(.white)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: self.alignment)
             .padding(EdgeInsets(top: 0, leading: horzPadding, bottom: 0, trailing: horzPadding))
+            .lineLimit(1)
     }
 }

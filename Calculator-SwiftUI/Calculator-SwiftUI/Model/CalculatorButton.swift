@@ -28,12 +28,8 @@ class CalculatorButton: CalculatorButtonProtocol, CustomStringConvertible, Custo
         fatalError("Not implemented")
     }
     
-    func format(_ n: Float) -> String {
-        if n == floor(n) {
-            return String(Int(n))
-        }
-        
-        return String(n)
+    fileprivate func format(_ n: Decimal?) -> String {
+        return String(describing: n!)
     }
 }
 
@@ -54,16 +50,14 @@ class NumberButton: CalculatorButton {
         self.init(label, type: .num)
     }
     override func action(n1: String, n2: String?) -> String {
-        guard let x = Float(n1) else {
-            fatalError("\(n1) is not a number")
-        }
         let hasDecimal = n1.contains(K.Number.Decimal.label)
-        if hasDecimal && self === K.Number.Decimal {
+        if hasDecimal && (self === K.Number.Decimal) {
             return n1
-        } else if hasDecimal || self === K.Number.Decimal {
-            return String("\(n1)\(label)")
         }
-        return format(x * 10.0 + Float(label)!)
+        if self === K.Number.Decimal {
+            return n1 + label
+        }
+        return format(Decimal(string: n1 + label))
     }
 }
 
@@ -72,7 +66,7 @@ class UnaryOperatorButton: CalculatorButton {
         self.init(label, type: .unaryOp)
     }
     override func action(n1: String, n2: String?) -> String {
-        guard let n = Float(n1) else {
+        guard let n = Decimal(string: n1) else {
             fatalError("\(n1) is not a number")
         }
         if label == K.Operator.Not.label {
@@ -88,11 +82,11 @@ class BinaryOperatorButton: CalculatorButton {
         self.init(label, type: .binaryOp)
     }
     override func action(n1: String, n2: String?) -> String {
-        guard let x = Float(n1) else {
+        guard let x = Decimal(string: n1) else {
             fatalError("\(n1) is not a number")
         }
-        guard let n = n2, let y = Float(n) else {
-            fatalError("\(n2 ?? "") is not a number")
+        guard let n = n2, let y = Decimal(string: n) else {
+            fatalError("\(n2 ?? "N/A") is not a number")
         }
         
         switch label {
