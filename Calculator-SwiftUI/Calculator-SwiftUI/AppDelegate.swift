@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Calculator-SwiftUI
-//
-//  Created by Abhijit Sarkar on 7/8/20.
-//  Copyright © 2020 Abhijit Sarkar. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

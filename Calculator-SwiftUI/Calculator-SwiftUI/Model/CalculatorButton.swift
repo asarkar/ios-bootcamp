@@ -92,7 +92,7 @@ class BinaryOperatorButton: CalculatorButton {
             fatalError("\(n1) is not a number")
         }
         guard let n = n2, let y = Float(n) else {
-            fatalError("\(String(describing: n2)) is not a number")
+            fatalError("\(n2 ?? "") is not a number")
         }
         
         switch label {

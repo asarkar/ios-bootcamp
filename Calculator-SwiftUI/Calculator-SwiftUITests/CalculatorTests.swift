@@ -14,81 +14,82 @@ class CalculatorTests: XCTestCase {
     }
     
     func testNegation() {
-        var result = calc.calculate(button: K.Operator.Not, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "0")
-        result = calc.calculate(button: K.Operator.Not, n: result)
-        XCTAssertEqual(result, "0")
+        calc.button = K.Operator.Not
+        XCTAssertEqual(calc.result, "0")
+        calc.button = K.Operator.Not
+        XCTAssertEqual(calc.result, "0")
     }
     
     func testPercentage() {
-        let result = calc.calculate(button: K.Operator.Percent, n: K.Number.Nine.label)
-        XCTAssertEqual(result, "0.09")
+        calc.button = K.Number.Nine
+        calc.button = K.Operator.Percent
+        XCTAssertEqual(calc.result, "0.09")
     }
     
     func testAddition() {
-        var result = calc.calculate(button: K.Number.One, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "1")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Operator.Plus, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Number.Eight, n: result)
-        XCTAssertEqual(result, "8")
-        result = calc.calculate(button: K.Equals, n: result)
-        XCTAssertEqual(result, "20")
+        calc.button = K.Number.One
+        XCTAssertEqual(calc.result, "1")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Operator.Plus
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Number.Eight
+        XCTAssertEqual(calc.result, "8")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "20")
     }
     
     func testSubtraction() {
-        var result = calc.calculate(button: K.Number.One, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "1")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Operator.Minus, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Number.Eight, n: result)
-        XCTAssertEqual(result, "8")
-        result = calc.calculate(button: K.Equals, n: result)
-        XCTAssertEqual(result, "4")
+        calc.button = K.Number.One
+        XCTAssertEqual(calc.result, "1")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Operator.Minus
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Number.Eight
+        XCTAssertEqual(calc.result, "8")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "4")
     }
     
     func testMultiplication() {
-        var result = calc.calculate(button: K.Number.One, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "1")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Operator.Times, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Number.Three, n: result)
-        XCTAssertEqual(result, "3")
-        result = calc.calculate(button: K.Equals, n: result)
-        XCTAssertEqual(result, "36")
+        calc.button = K.Number.One
+        XCTAssertEqual(calc.result, "1")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Operator.Times
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Number.Three
+        XCTAssertEqual(calc.result, "3")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "36")
     }
     
     func testDivision() {
-        var result = calc.calculate(button: K.Number.One, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "1")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Operator.Division, n: result)
-        XCTAssertEqual(result, "12")
-        result = calc.calculate(button: K.Number.Five, n: result)
-        XCTAssertEqual(result, "5")
-        result = calc.calculate(button: K.Equals, n: result)
-        XCTAssertEqual(result, "2.4")
+        calc.button = K.Number.One
+        XCTAssertEqual(calc.result, "1")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Operator.Division
+        XCTAssertEqual(calc.result, "12")
+        calc.button = K.Number.Five
+        XCTAssertEqual(calc.result, "5")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "2.4")
     }
     
     func testAddDecimals() {
-        var result = calc.calculate(button: K.Number.One, n: K.Number.Zero.label)
-        XCTAssertEqual(result, "1")
-        result = calc.calculate(button: K.Number.Decimal, n: result)
-        XCTAssertEqual(result, "1.")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "1.2")
-        result = calc.calculate(button: K.Operator.Plus, n: result)
-        XCTAssertEqual(result, "1.2")
-        result = calc.calculate(button: K.Number.Two, n: result)
-        XCTAssertEqual(result, "2")
-        result = calc.calculate(button: K.Equals, n: result)
-        XCTAssertEqual(result, "3.2")
+        calc.button = K.Number.One
+        XCTAssertEqual(calc.result, "1")
+        calc.button = K.Number.Decimal
+        XCTAssertEqual(calc.result, "1.")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "1.2")
+        calc.button = K.Operator.Plus
+        XCTAssertEqual(calc.result, "1.2")
+        calc.button = K.Number.Two
+        XCTAssertEqual(calc.result, "2")
+        calc.button = K.Equals
+        XCTAssertEqual(calc.result, "3.2")
     }
 }
